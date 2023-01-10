@@ -1,6 +1,6 @@
-import { Container, Box, BoxTitle, BoxText } from './profileList.styled'
 import { useQuery, gql } from "@apollo/client";
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
+import { Card } from './components/card';
 
 const PERSONS_QUERY = gql`query GetData($page: Int!, $perPage: Int!) {
   getData(page: $page, perPage: $perPage) {
@@ -22,6 +22,7 @@ function App() {
   if (loading) return "Loading...";
   if (error) return <pre>{error.message}</pre>
   window.addEventListener("scroll", (e) => {
+
     const bottom =
       e.target.scrollingElement.scrollHeight -
       e.target.scrollingElement.scrollTop ===
@@ -34,16 +35,7 @@ function App() {
   });
   return (
     <div className="App">
-      <Container>
-        {data?.getData.map((box, index) => (
-          <Box key={index + box.name} bgColor='lightgray'>
-            <BoxTitle>Name<BoxText>{box.name}</BoxText></BoxTitle>
-            <BoxTitle>Email Address<BoxText>{box.email}</BoxText></BoxTitle>
-            <BoxTitle>Home Address<BoxText>{box.address}</BoxText></BoxTitle>
-            <BoxTitle>Phone Number <BoxText>{box.phone}</BoxText></BoxTitle>
-          </Box>
-        ))}
-      </Container>
+      <Card data={data}></Card>
     </div>
   );
 }

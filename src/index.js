@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-const client = new ApolloClient({  uri: "https://faker-graphql.vercel.app/api/graphql",  cache: new InMemoryCache()});
-//"http://localhost:4000/graphql"
+const client = new ApolloClient({  uri: "http://localhost:4000/graphql",  cache: new InMemoryCache()});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
